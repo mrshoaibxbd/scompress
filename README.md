@@ -8,6 +8,10 @@
 
 > **scompress by Shoaib** — compress images on your own machine. Your files are not uploaded to a third-party service.
 
+## Compress Successful!
+
+![scompress desktop application](docs/images/complete-modal.png)
+
 ## Highlights
 
 - **Target-size compression:** aim for a strict maximum size such as `--500` (500,000 bytes).
@@ -21,10 +25,6 @@
 - **Opt-in in-place replacement:** staged output, source checks, recovery hard links, confirmation, and rollback attempts.
 - **No cloud processing:** image data stays local.
 
-
-## Compress Successful!
-
-![scompress desktop application](docs/images/complete-modal.png)
 
 ## Download a ready-to-install package
 
