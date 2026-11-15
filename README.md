@@ -4,9 +4,7 @@
 
 > **scompress by Shoaib** — compress images on your own machine. Your files are not uploaded to a third-party service.
 
-<!-- Add your final application screenshot at docs/images/scompress-main.png. -->
-<!-- When the screenshot is ready, uncomment the following line. -->
-<!-- ![scompress desktop application](docs/images/scompress-main.png) -->
+![scompress desktop application](docs/images/scompress-main.png)
 
 ## Highlights
 
@@ -21,15 +19,10 @@
 - **Opt-in in-place replacement:** staged output, source checks, recovery hard links, confirmation, and rollback attempts.
 - **No cloud processing:** image data stays local.
 
+
 ## Screenshots
 
-The repository includes a screenshot location for the project owner to add the final desktop screenshot:
-
-```text
-docs/images/scompress-main.png
-```
-
-See [`docs/images/README.md`](docs/images/README.md) for image guidance. After adding the screenshot, uncomment the image line near the top of this README.
+![scompress desktop application](docs/images/scompress-main.png)
 
 ## Download a ready-to-install package
 
