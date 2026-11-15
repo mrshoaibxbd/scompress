@@ -1,0 +1,95 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  linux-amd64:
+    name: Test and build (Ubuntu 24.04, x86-64)
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+
+      - name: Set up Go
+        uses: actions/setup-go@v7
+        with:
+          go-version: '1.27.x'
+          cache: false
+
+      - name: Install native build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y \
+            build-essential pkg-config libgtk-4-dev libwebp-dev zip
+
+      - name: Verify formatting
+        run: test -z "$(gofmt -l cmd/scompress)"
+
+      - name: Run Go tests
+        env:
+          CGO_ENABLED: "1"
+        run: go test ./cmd/scompress
+
+      - name: Run Go race tests
+        env:
+          CGO_ENABLED: "1"
+        run: go test -race ./cmd/scompress
+
+      - name: Run Go vet
+        env:
+          CGO_ENABLED: "1"
+        run: go vet ./cmd/scompress
+
+      - name: Check shell scripts
+        run: bash -n build.sh build-and-install.sh install.sh uninstall.sh scripts/package-release.sh
+
+      - name: Check release documentation and packaging inputs
+        run: |
+          test -s packaging/linux/README.md
+          test -s packaging/linux/USER_GUIDE.md
+          test -s packaging/linux/INSTALL.txt
+          test -s packaging/linux/UNINSTALL.txt
+          test -s packaging/linux/PACKAGE_CONTENTS.txt
+
+      - name: Build CLI and GTK application
+        run: ./build.sh
+
+      - name: Verify build outputs
+        run: |
+          test -x dist/linux-amd64/scompress
+          test -x dist/linux-amd64/scompress-gui
+          expected_version="$(tr -d '\r\n' < VERSION)"
+          test "$(dist/linux-amd64/scompress --version)" = "scompress ${expected_version}"
+          file dist/linux-amd64/scompress dist/linux-amd64/scompress-gui
+
+      - name: Smoke-test ready-to-install release package
+        run: |
+          version="$(tr -d '\r\n' < VERSION)"
+          ./scripts/package-release.sh "v${version}"
+          unzip -t "release/scompress-${version}-linux-amd64.zip"
+          tar -tzf "release/scompress-${version}-linux-amd64.tar.gz" >/dev/null
+          for item in README.md USER_GUIDE.md INSTALL.txt UNINSTALL.txt install.sh uninstall.sh \
+                      dist/linux-amd64/scompress dist/linux-amd64/scompress-gui LICENSE THIRD_PARTY_NOTICES.txt; do
+            unzip -Z1 "release/scompress-${version}-linux-amd64.zip" | \
+              grep -Fx "scompress-${version}-linux-amd64/${item}" >/dev/null
+          done
+
+      - name: Smoke-test per-user installation
+        run: |
+          test_home="$(mktemp -d)"
+          HOME="$test_home" XDG_DATA_HOME="$test_home/.local/share" ./install.sh
+          test -x "$test_home/.local/bin/scompress"
+          test -x "$test_home/.local/bin/scompress-gui"
+          test -f "$test_home/.local/share/nautilus/scripts/Compress with scompress"
+          test -f "$test_home/.local/share/kio/servicemenus/scompress.desktop"
+          HOME="$test_home" XDG_DATA_HOME="$test_home/.local/share" ./uninstall.sh
+          test ! -e "$test_home/.local/bin/scompress"
+          test ! -e "$test_home/.local/bin/scompress-gui"
+          rm -rf "$test_home"

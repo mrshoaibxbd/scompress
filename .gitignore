@@ -1,0 +1,20 @@
+# Build artifacts
+/release/
+/dist/linux-amd64/*
+!/dist/linux-amd64/.gitkeep
+*.o
+*.a
+*.so
+*.tmp
+
+# Local/editor files
+.DS_Store
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Test and profiling output
+coverage.out
+*.prof

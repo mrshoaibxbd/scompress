@@ -1,0 +1,56 @@
+name: Bug report
+description: Report a reproducible problem with scompress.
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: scompress version
+      placeholder: "scompress 2.4.2"
+    validations:
+      required: true
+  - type: input
+    id: distro
+    attributes:
+      label: Linux distribution and version
+      placeholder: "Ubuntu 26.04"
+    validations:
+      required: true
+  - type: input
+    id: desktop
+    attributes:
+      label: Desktop session and GTK version (for GUI issues)
+      placeholder: "GNOME / Wayland / GTK 4.22.4"
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - CLI
+        - GTK GUI
+        - Nautilus integration
+        - Dolphin integration
+        - Build or installation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include the exact command or GUI actions.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior and logs
+      description: Remove private paths, personal data, and EXIF/GPS information before posting.
+    validations:
+      required: true

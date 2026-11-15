@@ -1,0 +1,15 @@
+Uninstalling scompress
+======================
+
+From the extracted scompress release package directory, run:
+
+  ./uninstall.sh
+
+This removes the scompress CLI and GUI executables and the per-user
+GNOME Files, KDE Dolphin, application-menu, and icon integration files.
+
+It does NOT remove system packages such as GTK 4. It does NOT delete
+source images, compressed images, or other personal files.
+
+If you deleted the extracted release directory, download and extract
+the same release package again, then run uninstall.sh from that folder.

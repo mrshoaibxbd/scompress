@@ -1,0 +1,20 @@
+Ready-to-install release package contents
+==========================================
+
+README.md                   Quick overview and installation steps
+USER_GUIDE.md               Desktop and CLI user guide
+INSTALL.txt                 Short installation instructions
+UNINSTALL.txt               Removal instructions
+install.sh                  Per-user installer
+uninstall.sh                Per-user uninstaller
+VERSION                     Release version
+CHANGELOG.md                Release history
+LICENSE                     scompress project license
+THIRD_PARTY_NOTICES.txt     Notices for bundled third-party components
+dist/linux-amd64/scompress  Standalone CLI executable
+dist/linux-amd64/scompress-gui
+                            Native GTK 4 desktop executable
+integrations/nautilus/      GNOME Files script integration
+share/icons/                Application icon
+
+The installer creates the Dolphin service-menu entry and desktop launcher.

@@ -1,0 +1,10 @@
+scompress 2.4.2 source release
+Target: Linux x86-64
+Compression engine: Go with libwebp statically linked into the CLI
+Desktop interface: C + GTK 4, dynamically linked to the host GTK 4 runtime
+Display support: GTK 4 Wayland and X11/XWayland backends from the host desktop
+Build command: ./build-and-install.sh
+Repository: source only; generated binaries are excluded from version control
+CLI runtime requirement: no Go or libwebp runtime dependency
+GUI runtime requirement: GTK 4 desktop libraries
+Progress reporting: truthful completed-file count with an active spinner; no simulated percentage

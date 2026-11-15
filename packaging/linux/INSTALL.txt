@@ -1,0 +1,28 @@
+scompress 2.4.2 — Linux x86-64 installation
+============================================
+
+1. Extract the complete release ZIP.
+2. Open a terminal in the extracted scompress-2.4.2-linux-amd64 folder.
+3. Run:
+
+   chmod +x install.sh uninstall.sh
+   ./install.sh
+
+The installer works for the current user and does not require sudo.
+
+GUI requirement:
+  GTK 4.10 or newer, compatible glibc, and normal desktop display libraries.
+  Ubuntu 24.04 or newer (or a compatible distribution) is recommended.
+  Ubuntu/Debian: sudo apt install libgtk-4-1
+
+The command-line executable is standalone. It does not need Go, Python,
+pip, ImageMagick, or a separately installed libwebp at runtime.
+
+After installation:
+  - Launch "scompress Image Compressor" from the application menu.
+  - Or run: scompress-gui
+  - Or use the right-click action in GNOME Files / KDE Dolphin.
+  - CLI example: scompress photo.png --500
+
+See README.md and USER_GUIDE.md for complete usage, supported formats,
+limitations, troubleshooting, and uninstall instructions.

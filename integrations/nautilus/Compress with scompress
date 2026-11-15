@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+GUI="${HOME}/.local/bin/scompress-gui"
+if [[ ! -x "$GUI" ]]; then
+  echo "scompress GUI is not installed. Run ./install.sh from the source package." >&2
+  exit 1
+fi
+args=("$@")
+if [[ ${#args[@]} -eq 0 && -n "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS:-}" ]]; then
+  while IFS= read -r path; do
+    [[ -n "$path" ]] && args+=("$path")
+  done <<< "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
+fi
+if [[ ${#args[@]} -eq 0 ]]; then
+  exec "$GUI"
+fi
+exec "$GUI" "${args[@]}"

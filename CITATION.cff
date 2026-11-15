@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use scompress in your work, please cite this software."
+title: "scompress: A local-first Linux image compressor"
+version: 2.4.2
+date-released: 2026-11-15
+authors:
+  - name: Shoaib
+license: MIT
+repository-code: https://github.com/mrshoaibxbd/scompress
+type: software
