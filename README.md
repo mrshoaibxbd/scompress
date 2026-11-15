@@ -20,9 +20,9 @@
 - **No cloud processing:** image data stays local.
 
 
-## Screenshots
+## Compress Successful!
 
-![scompress desktop application](docs/images/scompress-main.png)
+![scompress desktop application](docs/images/complete-modal.png)
 
 ## Download a ready-to-install package
 
