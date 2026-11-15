@@ -2,9 +2,11 @@
 
 **A local-first image compressor for Linux, with a standalone CLI and a native GTK 4 desktop app.**
 
-> **scompress by Shoaib** — compress images on your own machine. Your files are not uploaded to a third-party service.
+## App Interface
 
 ![scompress desktop application](docs/images/scompress-main.png)
+
+> **scompress by Shoaib** — compress images on your own machine. Your files are not uploaded to a third-party service.
 
 ## Highlights
 
